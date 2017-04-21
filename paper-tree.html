@@ -71,6 +71,17 @@ Example:
                     return null;
                 },
                 observer: "_actionsChanged"
+            },
+
+            /**
+             * Determines if the root node should be hidden or displayed. Optional, defaults to
+             * false (displayed). When the root node is hidden, its children are always displayed
+             * and they can't be toggled.
+             */
+            hideRoot: {
+                type: Boolean,
+                value: function() { return false; },
+                // TODO OBSERVER??
             }
         },
 

@@ -109,7 +109,7 @@ Custom property | Description | Default
 
     <template>
         <div class="node-container">
-            <div class="node-row">
+            <div class="node-row" class$="{{_computeNodeRowClass()}}">
                 <span class$="{{_computeClass(data.*)}}" on-click="toggleChildren"></span>
                 <iron-icon class="node-icon" icon$="{{_computeIcon(data.icon)}}" on-click="select"></iron-icon>
                 <span class="node-name" on-click="select">{{data.name}}</span>
@@ -190,6 +190,15 @@ Custom property | Description | Default
          *
          * @event toggle
          */
+
+         /** TODO comment */
+         _computeNodeRowClass: function(change) {
+             if (this.id === 'root' && this.domHost.hideRoot) {
+                 return 'hidden';
+             } else {
+                 return '';
+             }
+         },
 
         /**
          * Returns the necessary classes.
