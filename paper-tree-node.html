@@ -109,7 +109,7 @@ Custom property | Description | Default
 
     <template>
         <div class="node-container">
-            <div class="node-row" class$="{{_computeNodeRowClass()}}">
+            <div class$="{{_computeNodeRowClass(data.*)}}">
                 <span class$="{{_computeClass(data.*)}}" on-click="toggleChildren"></span>
                 <iron-icon class="node-icon" icon$="{{_computeIcon(data.icon)}}" on-click="handleClick"></iron-icon>
                 <span class="node-name" on-click="handleClick">{{data.name}}</span>
