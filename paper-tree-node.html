@@ -111,8 +111,8 @@ Custom property | Description | Default
         <div class="node-container">
             <div class="node-row" class$="{{_computeNodeRowClass()}}">
                 <span class$="{{_computeClass(data.*)}}" on-click="toggleChildren"></span>
-                <iron-icon class="node-icon" icon$="{{_computeIcon(data.icon)}}" on-click="select"></iron-icon>
-                <span class="node-name" on-click="select">{{data.name}}</span>
+                <iron-icon class="node-icon" icon$="{{_computeIcon(data.icon)}}" on-click="handleClick"></iron-icon>
+                <span class="node-name" on-click="handleClick">{{data.name}}</span>
                 <template is="dom-if" if="{{actions}}">
                     <paper-menu-button id="actions">
                         <paper-icon-button icon="more-vert" noink class="dropdown-trigger"></paper-icon-button>
@@ -224,6 +224,18 @@ Custom property | Description | Default
 
         _actionClicked: function (event) {
             this.fire(event.model.item.event, this);
+        },
+
+        /**
+         * Handles a click on the current node (including its icon). Click behaviour depends
+         * on the "selectability" of the node. It either selects or toggle the node.
+         */
+        handleClick: function() {
+            if (!this.data.hasOwnProperty('selectable') || this.data.selectable) {
+                this.select();
+            } else {
+                this.toggleChildren();
+            }
         },
 
         /**
