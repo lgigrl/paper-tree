@@ -80,8 +80,7 @@ Example:
              */
             hideRoot: {
                 type: Boolean,
-                value: function() { return false; },
-                // TODO OBSERVER??
+                value: function() { return false; }
             }
         },
 
@@ -93,6 +92,10 @@ Example:
          * Called whenever the data is changed to notify the lower nodes.
          */
         _dataChanged: function()  {
+            // If the root node is hidden, make sure its children are visible.
+            if (this.hideRoot) {
+                this.data.open = true;
+            }
             this.$.root.data = this.data;
         },
 
