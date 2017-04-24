@@ -109,7 +109,7 @@ Custom property | Description | Default
 
     <template>
         <div class="node-container">
-            <div class="node-row">
+            <div class$="{{_computeNodeRowClass(data.*)}}">
                 <span class$="{{_computeClass(data.*)}}" on-click="toggleChildren"></span>
                 <iron-icon class="node-icon" icon$="{{_computeIcon(data.icon)}}" on-click="handleClick"></iron-icon>
                 <span class="node-name" on-click="handleClick">{{data.name}}</span>
@@ -190,6 +190,20 @@ Custom property | Description | Default
          *
          * @event toggle
          */
+
+         /**
+          * Returns the classes to apply to the node row. It is used to support <paper-tree>'s
+          * `hideRoot` property by detecting if the current node is the root and checking whether it
+          * should be visible or not.
+          *
+          * @returns {string} The classes to apply to the node row.
+          */
+         _computeNodeRowClass: function() {
+             return 'node-row' + (
+                (this.id === 'root' && this.domHost.hideRoot)
+                    ? ' hidden'
+                    : '');
+         },
 
         /**
          * Returns the necessary classes.

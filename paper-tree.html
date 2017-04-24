@@ -71,6 +71,16 @@ Example:
                     return null;
                 },
                 observer: "_actionsChanged"
+            },
+
+            /**
+             * Determines if the root node should be hidden or displayed. Optional, defaults to
+             * false (displayed). If you decide to hide the root node, make sure it is opened
+             * because the user won't have a way to toggle its content.
+             */
+            hideRoot: {
+                type: Boolean,
+                value: function() { return false; }
             }
         },
 
