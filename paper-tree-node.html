@@ -199,10 +199,10 @@ Custom property | Description | Default
           * @returns {string} The classes to apply to the node row.
           */
          _computeNodeRowClass: function() {
-             return 'node-row' + 
+             return 'node-row' + (
                 (this.id === 'root' && this.domHost.hideRoot)
                     ? ' hidden'
-                    : '';
+                    : '');
          },
 
         /**
