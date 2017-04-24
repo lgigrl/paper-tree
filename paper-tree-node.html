@@ -191,13 +191,18 @@ Custom property | Description | Default
          * @event toggle
          */
 
-         /** TODO comment */
-         _computeNodeRowClass: function(change) {
-             if (this.id === 'root' && this.domHost.hideRoot) {
-                 return 'node-row hidden';
-             } else {
-                 return 'node-row';
-             }
+         /**
+          * Returns the classes to apply to the node row. It is used to support <paper-tree>'s
+          * `hideRoot` property by detecting if the current node is the root and checking whether it
+          * should be visible or not.
+          *
+          * @returns {string} The classes to apply to the node row.
+          */
+         _computeNodeRowClass: function() {
+             return 'node-row' + 
+                (this.id === 'root' && this.domHost.hideRoot)
+                    ? ' hidden'
+                    : '';
          },
 
         /**
